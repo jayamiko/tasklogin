@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  width: 700px;
+  flex-direction: column;
+  justify-content: center;
+  h2 {
+    font-weight: bold;
+  }
+  .form-login {
+    width: auto !important;
+    align-items: center;
+    padding: 20px;
+    border: solid black 1px;
+    border-radius: 10px;
+  }
+}
