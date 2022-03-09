@@ -5,7 +5,6 @@ import Login from "./pages/Login/Login";
 import "./App.scss";
 import checkUser from "./config/auth";
 import {setAuthToken} from "./config/api";
-import PrivateRoutes from "./PrivateRoute/PrivateRoute";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -19,14 +18,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <PrivateRoutes>
-              <Home />
-            </PrivateRoutes>
-          }
-        />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </Router>

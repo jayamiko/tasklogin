@@ -1,8 +1,13 @@
 import React from "react";
-import {Nav, Navbar, Container} from "react-bootstrap";
+import {Nav, Navbar} from "react-bootstrap";
 import store from "../../store";
+import {useSelector} from "react-redux";
+import "./NavbarComponent.scss";
 
 export default function NavbarComponents() {
+  const stateAuth = useSelector((state) => state.auth);
+  const isLogin = stateAuth.isLogin;
+
   const logoutSession = () => {
     store.dispatch({
       type: "LOGOUT",
@@ -17,17 +22,31 @@ export default function NavbarComponents() {
   return (
     <div>
       <Navbar bg="dark" variant="dark">
-        <Container>
-          <Navbar.Brand href="#home">TaskLogin</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">About</Nav.Link>
-            <Nav.Link href="#pricing">Category</Nav.Link>
-            <Nav.Link href="/login" onClick={logoutSession}>
-              <span style={{color: "red"}}>Logout</span>
-            </Nav.Link>
-          </Nav>
-        </Container>
+        <Nav className="nav">
+          <Navbar.Brand className="navbar-brand" href="#home">
+            TaskLogin
+          </Navbar.Brand>
+          <div className="nav-item">
+            {isLogin ? (
+              <>
+                <Nav.Link href="#home" className="home">
+                  Home
+                </Nav.Link>
+                <Nav.Link href="#features">About</Nav.Link>
+                <Nav.Link href="#pricing">Category</Nav.Link>
+                <Nav.Link href="/" onClick={logoutSession}>
+                  <span className="text-logout">Logout</span>
+                </Nav.Link>
+              </>
+            ) : (
+              <>
+                <Nav.Link href="/login" onClick={logoutSession}>
+                  <span className="text-login">Login</span>
+                </Nav.Link>
+              </>
+            )}
+          </div>
+        </Nav>
       </Navbar>
     </div>
   );

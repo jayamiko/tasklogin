@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import {handleLogin} from "../../actions/auth";
 import {Button, Form} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
-import {useSelector} from "react-redux";
 import "./Login.scss";
 
 const Login = ({handleLogin, auth: {isLoading}}) => {
@@ -25,12 +24,6 @@ const Login = ({handleLogin, auth: {isLoading}}) => {
     handleLogin(inputLogin.userName, inputLogin.password);
     navigate("/");
   };
-
-  const stateAuth = useSelector((state) => state.auth);
-
-  if (stateAuth.isLogin) {
-    navigate("/");
-  }
 
   return (
     <div className="container">
